@@ -13,6 +13,20 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    modulesDirectories: ['node_modules']
-  }
+    modulesDirectories: ['node_modules', 'src'],
+    extensions: ['', '.js']
+  },
+  modules: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: ['react-hot', 'babel?presets[]=react, presets[]=es2015']
+      }
+    ]
+  },
+  plugins:  [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ]
 };
